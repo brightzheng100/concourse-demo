@@ -1,0 +1,16 @@
+---
+resources:
+- name: resource-git
+  type: git
+  source:
+    uri: https://github.com/brightzheng100/concourse-demo.git
+
+jobs:
+- name: job-pass-files
+  public: true
+  plan:
+  - get: resource-git
+  - task: create-some-files
+    file: resource-git/tasks/sh_create_some_files.yml
+  - task: show-some-files
+    file: rresource-git/tasks/sh_show_files.yml

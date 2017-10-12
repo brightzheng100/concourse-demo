@@ -1,0 +1,13 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+
+inputs:
+- name: resource-git
+- name: some-files
+
+run:
+  path: resource-git/tasks/sh_show_files.sh
