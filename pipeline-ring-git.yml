@@ -1,0 +1,19 @@
+---
+resources:
+- name: resource-every-1m
+  type: time
+  source: {interval: 1m}
+
+- name: resourse-git
+  type: git
+  source:
+    uri: https://github.com/brightzheng100/concourse-demo.git
+
+jobs:
+- name: job-ring
+  plan:
+  - get: resource-every-1m
+    trigger: true
+  - get: resourse-git
+  - task: task-ring
+    file: resourse-git/task_ring.yml
