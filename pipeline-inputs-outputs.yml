@@ -6,11 +6,11 @@ resources:
     uri: https://github.com/brightzheng100/concourse-demo.git
 
 jobs:
-- name: job-pass-files
+- name: job-inputs-outputs
   public: true
   plan:
   - get: resource-git
-  - task: create-some-files
-    file: resource-git/tasks/sh_create_some_files.yml
-  - task: show-some-files
-    file: rresource-git/tasks/sh_show_files.yml
+  - task: task-create-some-files
+    file: resource-git/tasks/task_create_some_files.yml
+  - task: task-show-some-files
+    file: resource-git/tasks/task_show_files.yml
