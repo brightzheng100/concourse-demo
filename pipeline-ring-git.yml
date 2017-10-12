@@ -16,4 +16,4 @@ jobs:
     trigger: true
   - get: resourse-git
   - task: task-ring
-    file: resourse-git/task_ring.yml
+    file: resourse-git/tasks/task-ring.yml
