@@ -1,0 +1,16 @@
+---
+
+resources:
+- name: resourse-git
+  type: git
+  source:
+    uri: https://github.com/brightzheng100/concourse-demo.git
+
+jobs:
+- name: hello-world
+  plan:
+  - get: resourse-git
+  - task: task-sayhello
+    file: resourse-git/tasks/task-parameterized.yml
+    params:
+      my_secret: ((my_secret))

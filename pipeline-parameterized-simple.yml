@@ -1,0 +1,19 @@
+---
+jobs:
+- name: hello-world
+  plan:
+  - task: say-hello
+    params:
+      MY_SECRET: ((my-secret))
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: busybox
+      run:
+        path: sh
+        args:
+        - -exc
+        - |
+          echo "MY_SECRET is ${MY_SECRET}"
