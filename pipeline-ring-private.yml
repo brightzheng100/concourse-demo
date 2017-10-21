@@ -1,0 +1,28 @@
+---
+resources:
+- name: resource-every-1m
+  type: time
+  source: {interval: 1m}
+
+jobs:
+- name: job-ring
+  plan:
+  - get: resource-every-1m
+    trigger: true
+  - task: task-ring
+    #file: tasks/task_ring.yml
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: 10.244.0.8:443/busybox
+          insecure_registries: [ "10.244.0.8:443" ]
+          tag: latest
+      run:
+        path: sh
+        args:
+          - -exc
+          - |
+            date
+            echo "I love Concourse!"
