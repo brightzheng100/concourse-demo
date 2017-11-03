@@ -10,7 +10,6 @@ run:
   args:
   - -exc
   - |
-    sleep 100
     echo "my_secret is ${my_secret}"
 
 params:
