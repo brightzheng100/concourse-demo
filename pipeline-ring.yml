@@ -10,7 +10,6 @@ jobs:
   - get: resource-every-1m
     trigger: true
   - task: task-ring
-    #file: tasks/task_ring.yml
     config:
       platform: linux
       image_resource:

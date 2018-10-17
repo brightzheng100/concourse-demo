@@ -1,0 +1,24 @@
+---
+
+resources:
+- name: resourse-git
+  type: git
+  source:
+    uri: https://github.com/brightzheng100/concourse-demo.git
+# define the docker image here
+- name: my-docker-image
+  type: docker-image
+  source: 
+    repository: busybox
+
+jobs:
+- name: hello-world
+  plan:
+  - get: resourse-git
+  # and get it before using it
+  - get: my-docker-image
+  - task: task-sayhello
+    file: resourse-git/tasks/task-parameterized.yml
+    image: my-docker-image
+    params:
+      my_secret: ((my-secret))
